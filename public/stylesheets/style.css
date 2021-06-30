@@ -1,3 +1,7 @@
+.container {
+    grid-template-columns: 40px 50px auto 50px 40px;
+  }
+
 body
 {
 margin: 30px;
@@ -163,4 +167,13 @@ font-size: 80%;
 
 .bx--text-input-wrapper{
     width: 20%
+}
+
+.bx--form-item{
+    margin-right: 20px;
+}
+
+.text{
+    font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    margin-bottom: 40px;
 }

@@ -3,7 +3,6 @@ var payload = {
     "zipcode": null,
     "bedrooms":null,
     "bathrooms":null,
-    "waterfront":null,
     "lat":null,
     "sqft_living15":null,
     "long":null,
@@ -13,36 +12,54 @@ var payload = {
 
 function onChange()
 {
-    payload.zipcode = parseInt(document.getElementById('zipcode').value);
-    payload.bedrooms = parseInt(document.getElementById('bedrooms').value)
-    payload.bathrooms = parseInt(document.getElementById('bathrooms').value);
-    payload.waterfront = parseInt(document.getElementById('waterfront').value);
-    payload.lat = parseInt(document.getElementById('lat').value);
-    payload.sqft_living15 = parseInt(document.getElementById('sqft_living15').value);
-    payload.long = parseInt(document.getElementById('long').value);
-    payload.sqft_living = parseInt(document.getElementById('sqft_living').value);
+    payload.zipcode = parseFloat(document.getElementById('zipcode').value);
+    payload.bedrooms = parseFloat(document.getElementById('bedrooms').value)
+    payload.bathrooms = parseFloat(document.getElementById('bathrooms').value);
+    payload.lat = parseFloat(document.getElementById('lat').value);
+    payload.sqft_living15 = parseFloat(document.getElementById('sqft_living15').value);
+    payload.long = parseFloat(document.getElementById('long').value);
+    payload.sqft_living = parseFloat(document.getElementById('sqft_living').value);
 
     console.log(payload)
 
 }
 
 function onToggle(){
-    if (payload.waterfront == 0){
-        payload.waterfront =1
+    if (payload.waterfront == 1){
+        payload.waterfront = 0
     } else 
-    payload.waterfront = 0
+    payload.waterfront = 1
     
     console.log(payload)
 }
 
-function payloadChecker(){
-    
+
+
+
+ 
+function onEstimate(){
+   /*  const values = Object.payload.map(field => field); */
+    const payload_scoring = {"input data":
+            [{"fields":[Object.keys(payload)],
+            "values":[Object.values(payload)]}]  
+    }
+    console.log(payload_scoring)
+
+    const res = sendPayloadToDeployment(payload_scoring)
+
+    console.log(res)
+
+    return res
 }
 
 
-function onClick (){
-    payload
-}
+
+
+
+
+
+
+
 
 
 

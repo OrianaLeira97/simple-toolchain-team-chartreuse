@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  
   <head>
     <!-- <link href="stylesheets/style.css" rel="stylesheet" /> -->
     <link
@@ -16,17 +17,13 @@
   </head>
 
   <body>
-    <div id="instructions_div">
+    <div class="container">
+    <div id='instructions_div' class="text">
       <h3>Instructions</h3>
-      <ol>
-        <li>Draw a single digit ( 0 - 9 ) in the box using your mouse</li>
-        <li>
-          Choose whether to prepare the image data to be sent to a model
-          deployment or to a function deployment
-        </li>
-        <li>Then click <b>Analyze</b></li>
-      </ol>
+        <p>Fill the following fields to estimate your dream house's price </p>
     </div>
+
+    
     <div class="bx--form">
       <div class="bx--form-item bx--text-input-wrapper">
         <label for="text-input-3" class="bx--label">ZIP Code</label>
@@ -93,7 +90,7 @@
         </div>
       </div>
 
-      </div>
+      
       <div class="bx--form-item bx--text-input-wrapper">
         <label for="text-input-3" class="bx--label">Latitud</label>
         <div class="bx--text-input__field-wrapper">
@@ -129,12 +126,24 @@
           <span class="bx--toggle__text--right">On</span>
         </label>
       </div>
+    </div>
+  </div>
 
-
-      <button id="btn-form" class="bx--btn bx--btn--primary" type="button">
+      <button id="btn-form" class="bx--btn bx--btn--primary" type="button" onclick="onEstimate()">
         Estimate
       </button>
-    </div>
+   
+
+      <div class="bx--form-item">
+        <h4>Returned classification</h4>
+        <label for="text-input-1" class="bx--label">Text field label</label>
+        <input id="text-input-1" type="text" class="bx--text-input">
+      </div>
+      </div>
+
+
+    </div>      
+
     <!-- Put HTML snippets of components here... -->
     <script src="https://unpkg.com/carbon-components/scripts/carbon-components.min.js"></script>
     <script type="text/javascript" src="javascripts/javascript.js"></script>
@@ -142,11 +151,11 @@
       var socket = io.connect();
       socket.on("processresult", processresultHandler);
       function sendPayloadToDeployment(payload) {
-        document.getElementById("results_spinner").style.display = "block";
-        var deployment_type = document.querySelector(
+        /*  document.getElementById("results_spinner").style.display = "block"; */
+         /* var deployment_type = document.querySelector(
           'input[name="deployment_type"]:checked'
-        ).value;
-        socket.emit(deployment_type, payload);
+        ).value;  */
+        socket.emit("sendtomodel", payload);
       }
     </script>
   </body>

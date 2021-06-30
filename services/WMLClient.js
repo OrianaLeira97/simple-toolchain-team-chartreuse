@@ -75,13 +75,13 @@ function sendtodeployment( endpoint_url, iam_token, instance_id, payload )
     {
         var options = {
             url: endpoint_url,
-            qs: {
+            /* qs: {
                 version: '2020-08-01'
-            },
+            }, */
             headers: {
                 "Content-type"   : "application/json",
                 "Authorization"  : "Bearer " + iam_token,
-                "ML-Instance-ID" : instance_id 
+                //"ML-Instance-ID" : instance_id 
             },
             body: JSON.stringify(payload)
         };
