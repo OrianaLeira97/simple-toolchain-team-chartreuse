@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link href="stylesheets/style.css" rel="stylesheet">
+    <script type="text/javascript" src="javascripts/javascript.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  </head>
+ 
+  <body>
+
+    <script>
+
+      //var socket = io.connect( 'https://app-name.mybluemix.net/' );
+      var socket = io.connect();
+
+      socket.on( 'processresult', processresultHandler );
+
+      function sendPayloadToDeployment( payload )
+      {
+          document.getElementById( 'results_spinner' ).style.display = 'block';
+          
+          var deployment_type = document.querySelector( 'input[name="deployment_type"]:checked' ).value;
+
+          socket.emit( deployment_type, payload );
+      }
+
+    </script>
+
+    <div id='instructions_div'>
+      <h3>Instructions</h3>
+        <p>Fill the following fields to estimate your dream house's price </p>
+    </div>
+
+    <div id='input_zipcode'>
+      <h4>Zip Code</h4>
+      <input type="text" id="zipcode" name="zipcode" onchange='onChange(event,id="zipcode")'>
+    </div>
+    <div id='input_bedroom'>
+      <h4>Bedrooms</h4>
+      <input type="text" id="bedrooms" name="bedrooms" onchange='onChange(event)'>
+    </div>
+    <div id='input_bathrooms'>
+      <h4>Bathrooms</h4>
+      <input type="text" id="bathrooms" name="bathrooms" onchange='onChange(event)'>
+    </div>
+    <div id='input_sqrt'>
+      <h4>Living Square Footage</h4>
+      <input type="text" id="sqft_living" name="sqft_living" onchange='onChange(event)'>
+    </div>
+    <div id='input_sqft_living15'>
+      <h4>Living Square Footage 15</h4>
+      <input type="text" id="sqft_living15" name="sqft_living15" onchange='onChange(event)'>
+    </div>
+    <div id='input_lat'>
+      <h4>Latitud </h4>
+      <input type="text" id="lat" name="lat" onchange='onChange(event)'>
+    </div>
+    <div id='input_long'>
+      <h4>Longitud</h4>
+      <input type="text" id="long" name="long" onchange='onChange(event)'>
+    </div>
+    <div id='input_waterfront'> <!-- cambiar-->
+      <h4>WaterFront</h4>
+      <input type="switslider roundch" id="waterfront" name="waterfront" onchange='onChange(event)'>
+    </div>
+    
+
+
+
+
+
+
+    <div id="radio_btn_div">
+      <input type="radio" class="radio_btn" name="deployment_type" value="sendtomodel" checked title="Send preprocessed data to a model deployment" onchange='revertImage();'>Model deployment<br/>
+    </div>
+    <button id='submit_button' onclick='submit_drawing();'   title='Submit current drawing for analysis'>Analyze</button>
+    <button id='clear_button'  onclick='clear_everything();' title='Clear drawing and results'>Clear</button>
+
+    <div id='payload_div'>
+    <h4>Generated payload</h4>
+    <pre id='payload_pre'     class='results_pre' ></pre>
+    <div id='payload_spinner' class='spinner'></div>
+    </div>
+
+    <div id='results_div'>
+    <h4>Returned classification</h4>
+    <pre id='results_pre'     class='results_pre'></pre>
+    <div id='results_spinner' class='spinner'></div>
+    </div>
+ 
+
+  </body>
+
+</html>
+

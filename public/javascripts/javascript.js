@@ -1,20 +1,47 @@
-var payload = {}
+var payload = {
+    "waterfront":0,
+    "zipcode": null,
+    "bedrooms":null,
+    "bathrooms":null,
+    "waterfront":null,
+    "lat":null,
+    "sqft_living15":null,
+    "long":null,
+    "sqft_living":null
+}
 
 
 function onChange()
 {
-    payload.zipcode = document.getElementById('zipcode').value;
-    payload.bedrooms = document.getElementById('bedrooms').value;
-    payload.bathrooms = document.getElementById('bathrooms').value;
-    payload.waterfront = document.getElementById('waterfront').value;
-    payload.lat = document.getElementById('lat').value;
-    payload.sqft_living15 = document.getElementById('sqft_living15').value;
-    payload.long = document.getElementById('long').value;
-    payload.sqft_living = document.getElementById('sqft_living').value;
-
+    payload.zipcode = parseInt(document.getElementById('zipcode').value);
+    payload.bedrooms = parseInt(document.getElementById('bedrooms').value)
+    payload.bathrooms = parseInt(document.getElementById('bathrooms').value);
+    payload.waterfront = parseInt(document.getElementById('waterfront').value);
+    payload.lat = parseInt(document.getElementById('lat').value);
+    payload.sqft_living15 = parseInt(document.getElementById('sqft_living15').value);
+    payload.long = parseInt(document.getElementById('long').value);
+    payload.sqft_living = parseInt(document.getElementById('sqft_living').value);
 
     console.log(payload)
 
+}
+
+function onToggle(){
+    if (payload.waterfront == 0){
+        payload.waterfront =1
+    } else 
+    payload.waterfront = 0
+    
+    console.log(payload)
+}
+
+function payloadChecker(){
+    
+}
+
+
+function onClick (){
+    payload
 }
 
 
@@ -385,3 +412,4 @@ function processresultHandler( result )
     }
 
 }
+
