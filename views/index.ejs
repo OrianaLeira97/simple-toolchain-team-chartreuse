@@ -6,7 +6,7 @@
     <script type="text/javascript" src="javascripts/javascript.js"></script>
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
   </head>
-
+ 
   <body>
 
     <script>
@@ -29,25 +29,47 @@
 
     <div id='instructions_div'>
       <h3>Instructions</h3>
-      <ol>
-        <li>Draw a single digit ( 0 - 9 ) in the box using your mouse</li>
-        <li>Choose whether to prepare the image data to be sent to a model deployment or to a function deployment</li>
-        <li>Then click <b>Analyze</b></li>
-      </ol>
+        <p>Fill the following fields to estimate your dream house's price </p>
     </div>
 
-    <div id='canvas_div'>
-      <h4>Canvas</h4>
-      <canvas id='drawing_box'
-              onmousedown = 'start_drawing(event);' 
-              onmouseup   = 'stop_drawing(event);'
-              onmouseout  = 'stop_drawing(event);'
-              onmousemove = 'draw_line(event);'
-              height="200",
-              width="200"
-              title="Draw a single digit ( 0 - 9 ) here using your mouse">
-      </canvas>
+    <div id='input_zipcode'>
+      <h4>Zip Code</h4>
+      <input type="text" id="zipcode" name="zipcode" onchange='onChange(event,id="zipcode")'>
     </div>
+    <div id='input_bedroom'>
+      <h4>Bedrooms</h4>
+      <input type="text" id="bedrooms" name="bedrooms" onchange='onChange(event)'>
+    </div>
+    <div id='input_bathrooms'>
+      <h4>Bathrooms</h4>
+      <input type="text" id="bathrooms" name="bathrooms" onchange='onChange(event)'>
+    </div>
+    <div id='input_sqrt'>
+      <h4>Living Square Footage</h4>
+      <input type="text" id="sqft_living" name="sqft_living" onchange='onChange(event)'>
+    </div>
+    <div id='input_sqft_living15'>
+      <h4>Living Square Footage 15</h4>
+      <input type="text" id="sqft_living15" name="sqft_living15" onchange='onChange(event)'>
+    </div>
+    <div id='input_lat'>
+      <h4>Latitud </h4>
+      <input type="text" id="lat" name="lat" onchange='onChange(event)'>
+    </div>
+    <div id='input_long'>
+      <h4>Longitud</h4>
+      <input type="text" id="long" name="long" onchange='onChange(event)'>
+    </div>
+    <div id='input_waterfront'> <!-- cambiar a TOGGLE-->
+      <h4>WaterFront</h4>
+      <input type="switslider roundch" id="waterfront" name="waterfront" onchange='onChange(event)'>
+    </div>
+    
+
+
+
+
+
 
     <div id="radio_btn_div">
       <input type="radio" class="radio_btn" name="deployment_type" value="sendtomodel" checked title="Send preprocessed data to a model deployment" onchange='revertImage();'>Model deployment<br/>
@@ -66,19 +88,7 @@
     <pre id='results_pre'     class='results_pre'></pre>
     <div id='results_spinner' class='spinner'></div>
     </div>
-
-    <div id='explain_div'>
-    <p>Watch as the image data from the canvas (RGBA format) is preprocessed before being sent in the payload to the model or function.</p>
-    <p>The preprocessing is as close as possible to how the MNIST training data was prepared:</p>
-    <ol>
-    <li>A rectangular bounding box is created around the digit (the red box is for illustration only, and is not part of the processing)</li>
-    <li>A square bounding box is created, with the digit centered in the box<p><i>If "Function deployment" is checked, processing stops here and this canvas data is sent to the function deployment.</i></p></li>
-    <li>The content in the square box is resized to 28 pixels by 28 pixels</li>
-    <li>The image is converted to greyscale by setting RGB values to zero, leaving only the Alpha value remaining</li>
-    <li>The Alpha values are collected in a 1 by 784 array</li>
-    <li>Values in the array are normalized (divided by 255) to values between 0 and 1<p><i>If "Model deployment" is checked, this array is set to the model deployment.</i></p></li>
-    </ol>
-    </div>
+ 
 
   </body>
 

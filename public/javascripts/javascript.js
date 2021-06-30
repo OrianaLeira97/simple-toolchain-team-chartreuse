@@ -1,17 +1,23 @@
-var g_mouse_is_down = false; // Used to draw the image on the canvas
-var g_prev_pixel_X  = -1;    //
-var g_prev_pixel_Y  = -1;    //
-var g_line_width = 25;       //
+var payload = {}
 
-var g_min_X = 200;           // Tracking the minimum/maximum mouse position
-var g_min_Y = 200;           // on the canvas makes it simple to create a 
-var g_max_X = 0;             // bounding box around the drawn digit
-var g_max_Y = 0;             //
 
-var g_saved_digit = null;    // After an image has been sent to a deployment
-                             // if a different deployment type is selected,
-                             // reload the original drawn digit to resend to
-                             // the other deployment type
+function onChange()
+{
+    payload.zipcode = document.getElementById('zipcode').value;
+    payload.bedrooms = document.getElementById('bedrooms').value;
+    payload.bathrooms = document.getElementById('bathrooms').value;
+    payload.waterfront = document.getElementById('waterfront').value;
+    payload.lat = document.getElementById('lat').value;
+    payload.sqft_living15 = document.getElementById('sqft_living15').value;
+    payload.long = document.getElementById('long').value;
+    payload.sqft_living = document.getElementById('sqft_living').value;
+
+
+    console.log(payload)
+
+}
+
+
 
 
 function start_drawing(e)
