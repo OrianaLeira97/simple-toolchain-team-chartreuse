@@ -45,11 +45,11 @@ function onEstimate(){
     }
     console.log(payload_scoring)
 
-    const res = sendPayloadToDeployment(payload_scoring)
+    //const res = sendPayloadToDeployment(payload_scoring)
 
-    console.log(res)
-
-    return res
+    //console.log(res)
+    document.getElementById("price-output").value = Math.round(Math.random()*1000000,2);
+    //return res
 }
 
 

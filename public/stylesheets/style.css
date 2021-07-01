@@ -9,6 +9,11 @@ padding: 0px;
 font-family: Helvetica, Arial, sans-serif;
 }
 
+p
+{
+line-height:2.5;
+}
+
 li
 {
 margin-bottom: 8px;
@@ -62,7 +67,7 @@ background: white;
 border: 1px solid black;
 color: black;
 font-size: 100%;
-width: 90px;
+width: auto;
 }
 
 button:hover
@@ -165,15 +170,22 @@ left: 30px;
 font-size: 80%;
 }
 
-.bx--text-input-wrapper{
-    width: 20%
+.bx--text-input{
+    width: 30%;
+    background-color: #161616;
+    color: #8d8d8d;
 }
 
 .bx--form-item{
     margin-right: 20px;
+    margin-bottom: 15px;
 }
 
 .text{
     font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
     margin-bottom: 40px;
+}
+
+.bx--btn{
+    padding: calc(0.875rem - 3px) 88px calc(0.875rem - 3px) 15px;
 }
