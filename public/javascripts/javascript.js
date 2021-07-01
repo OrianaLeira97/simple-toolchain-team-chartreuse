@@ -9,10 +9,17 @@ var payload = {
     "sqft_living":null
 }
 
+function onSelect()
+{
+    let e = document.getElementById("zipcode");
+    console.log(e.options[e.selectedIndex].value)
+    payload.zipcode = e.options[e.selectedIndex].value;
+    console.log(payload)
+
+}
 
 function onChange()
 {
-    payload.zipcode = parseFloat(document.getElementById('zipcode').value);
     payload.bedrooms = parseFloat(document.getElementById('bedrooms').value)
     payload.bathrooms = parseFloat(document.getElementById('bathrooms').value);
     payload.lat = parseFloat(document.getElementById('lat').value);
@@ -34,23 +41,22 @@ function onToggle(){
 }
 
 
-
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
  
 function onEstimate(){
-   /*  const values = Object.payload.map(field => field); */
-    const payload_scoring = {"input data":
-            [{"fields":[Object.keys(payload)],
-            "values":[Object.values(payload)]}]  
-    }
-    console.log(payload_scoring)
-
-    //const res = sendPayloadToDeployment(payload_scoring)
-
-    //console.log(res)
-    document.getElementById("price-output").value = Math.round(Math.random()*1000000,2);
-    //return res
-}
+    /*  const values = Object.payload.map(field => field); */
+     const payload_scoring = {"input_data":
+             [{"fields":[Object.keys(payload)],
+             "values":[Object.values(payload)]}]  
+     }
+ 
+     const res = sendPayloadToDeployment(payload_scoring)
+    
+     return res
+ }
 
 
 
@@ -136,8 +142,15 @@ function clearResultsDiv()
 
 function populateResultsDiv( result )
 {
-    document.getElementById( 'results_spinner' ).style.display = 'none';
-    document.getElementById( 'results_pre' ).innerHTML = result;
+    result = JSON.parse(result)
+    if (result && result.predictions && result.predictions.length) {
+        console.log(result.predictions[0])
+        result = `${result.predictions[0].values[0][0]}`
+    } else {
+        result = "Invalid results from deployed model."
+    }
+    document.getElementById("price-output").value = numberWithCommas(Math.round((result) * 100) / 100);
+    console.log(result)
 }
 
 
@@ -186,72 +199,6 @@ function revertImage()
     
     var ctx = document.getElementById( 'drawing_box' ).getContext( '2d' );
     ctx.putImageData( g_saved_digit, 0, 0 );
-}
-
-
-function submit_drawing()
-{
-    if( null !== document.getElementById( 'submit_button' ).title.match( /clear/i ) )
-    {
-        alert( "Click 'Clear' to clean the canvas and start again." );
-        return;
-    }    
-
-    document.getElementById( 'submit_button' ).title = "Click 'Clear' to clean the canvas and start again";
-
-    document.getElementById( 'payload_spinner' ).style.display = 'block';
-    
-    digit_img = get_bounding_box();
-
-    // Note: The timeouts here are just to gradually show the
-    // progression of preprocessing steps in the UI
-    setTimeout( function()
-    {
-        [ centered_img, box_X, box_Y ] = center( digit_img );
-
-        var deployment_type = document.querySelector( 'input[name="deployment_type"]:checked' ).value;
-        
-        if( deployment_type.match( /function/ )  )
-        {
-            // If using the function deployment, we don't need to do any more
-            // preprocessing here in the app because the function handles that
-            
-            var payload = { "values" : [ { "height" : centered_img.height, "data" : [ Array.from( centered_img.data ) ] } ] };
-
-            populatePayloadDiv( payload );
-
-            sendPayloadToDeployment( payload );
-        }
-        else
-        {
-            // To send a payload to the model deployment, we need to do
-            // more preprocessing here in the app
-            setTimeout( function()
-            {
-                let tinier_img = resize_8x8(centered_img, box_X, box_Y)
-
-                setTimeout( function()
-                {
-                    var gray_img = greyscale( tinier_img );
-                    
-                    var arr = create_array_28x28( gray_img );
-                    
-                    var payload = {
-                        input_data: [ 
-                            {"values" : [ arr ] }
-                        ]
-                    };
-                        
-                    populatePayloadDiv( payload );
-
-                    sendPayloadToDeployment( payload );
-
-                }, 1000 );
-
-            }, 1000 );
-        }
-
-    }, 1000 );
 }
 
 
@@ -412,7 +359,7 @@ function processresultHandler( result )
     if( "values" in result )
     {
         // This is what's returned by the sample model deployment
-        var model_result = document.getElementById( 'results_pre' ).innerHTML = result["values"][0];
+        // var model_result = document.getElementById( 'results_pre' ).innerHTML = result["values"][0];
         populateResultsDiv( model_result );
     }
     else if( "digit_class" in result )
@@ -425,7 +372,6 @@ function processresultHandler( result )
     {
         var err_str = JSON.stringify( result, null, 3 );
         populateResultsDiv( err_str );
-        alert( err_str );
     }
 
 }

@@ -1,3 +1,4 @@
+
 .container {
     grid-template-columns: 40px 50px auto 50px 40px;
   }
@@ -172,8 +173,8 @@ font-size: 80%;
 
 .bx--text-input{
     width: 30%;
-    background-color: #161616;
-    color: #8d8d8d;
+    /* background-color: #161616;
+    color: #8d8d8d; */
 }
 
 .bx--form-item{
@@ -187,5 +188,12 @@ font-size: 80%;
 }
 
 .bx--btn{
-    padding: calc(0.875rem - 3px) 88px calc(0.875rem - 3px) 15px;
+    padding: inherit;
+    width: auto;
+}
+
+.bx--select-input{
+    width: 30%;
+    /* background-color: #161616;
+    color: #8d8d8d; */
 }

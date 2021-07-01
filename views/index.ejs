@@ -31,13 +31,79 @@
             <div class="bx--form-item bx--text-input-wrapper">
               <label for="text-input-3" class="bx--label">ZIP Code</label>
               <div class="bx--text-input__field-wrapper">
-                <input
-                  onchange='onChange(event)'
-                  id="zipcode"
-                  type="text"
-                  class="bx--text-input"
-                  placeholder="Null"
-                />
+                <select name="select" id="zipcode" onchange="onSelect(event)" class="bx--select-input">
+                  <option class="bx--select-option" disabled selected hidden>Pick a zipcode</option>
+                  <option class="bx--select-option" value="98001">98001</option>
+                  <option class="bx--select-option" value="98002">98002</option>
+                  <option class="bx--select-option" value="98003">98003</option>
+                  <option class="bx--select-option" value="98004">98004</option>
+                  <option class="bx--select-option" value="98005">98005</option>
+                  <option class="bx--select-option" value="98006">98006</option>
+                  <option class="bx--select-option" value="98007">98007</option>
+                  <option class="bx--select-option" value="98008">98008</option>
+                  <option class="bx--select-option" value="98010">98010</option>
+                  <option class="bx--select-option" value="98011">98011</option>
+                  <option class="bx--select-option" value="98014">98014</option>
+                  <option class="bx--select-option" value="98019">98019</option>
+                  <option class="bx--select-option" value="98022">98022</option>
+                  <option class="bx--select-option" value="98023">98023</option>
+                  <option class="bx--select-option" value="98024">98024</option>
+                  <option class="bx--select-option" value="98027">98027</option>
+                  <option class="bx--select-option" value="98028">98028</option>
+                  <option class="bx--select-option" value="98029">98029</option>
+                  <option class="bx--select-option" value="98030">98030</option>
+                  <option class="bx--select-option" value="98031">98031</option>
+                  <option class="bx--select-option" value="98032">98032</option>
+                  <option class="bx--select-option" value="98033">98033</option>
+                  <option class="bx--select-option" value="98034">98034</option>
+                  <option class="bx--select-option" value="98038">98038</option>
+                  <option class="bx--select-option" value="98039">98039</option>
+                  <option class="bx--select-option" value="98040">98040</option>
+                  <option class="bx--select-option" value="98042">98042</option>
+                  <option class="bx--select-option" value="98045">98045</option>
+                  <option class="bx--select-option" value="98052">98052</option>
+                  <option class="bx--select-option" value="98053">98053</option>
+                  <option class="bx--select-option" value="98055">98055</option>
+                  <option class="bx--select-option" value="98056">98056</option>
+                  <option class="bx--select-option" value="98058">98058</option>
+                  <option class="bx--select-option" value="98059">98059</option>
+                  <option class="bx--select-option" value="98065">98065</option>
+                  <option class="bx--select-option" value="98070">98070</option>
+                  <option class="bx--select-option" value="98072">98072</option>
+                  <option class="bx--select-option" value="98074">98074</option>
+                  <option class="bx--select-option" value="98075">98075</option>
+                  <option class="bx--select-option" value="98077">98077</option>
+                  <option class="bx--select-option" value="98092">98092</option>
+                  <option class="bx--select-option" value="98102">98102</option>
+                  <option class="bx--select-option" value="98103">98103</option>
+                  <option class="bx--select-option" value="98105">98105</option>
+                  <option class="bx--select-option" value="98106">98106</option>
+                  <option class="bx--select-option" value="98107">98107</option>
+                  <option class="bx--select-option" value="98108">98108</option>
+                  <option class="bx--select-option" value="98109">98109</option>
+                  <option class="bx--select-option" value="98112">98112</option>
+                  <option class="bx--select-option" value="98115">98115</option>
+                  <option class="bx--select-option" value="98116">98116</option>
+                  <option class="bx--select-option" value="98117">98117</option>
+                  <option class="bx--select-option" value="98118">98118</option>
+                  <option class="bx--select-option" value="98119">98119</option>
+                  <option class="bx--select-option" value="98122">98122</option>
+                  <option class="bx--select-option" value="98125">98125</option>
+                  <option class="bx--select-option" value="98126">98126</option>
+                  <option class="bx--select-option" value="98133">98133</option>
+                  <option class="bx--select-option" value="98136">98136</option>
+                  <option class="bx--select-option" value="98144">98144</option>
+                  <option class="bx--select-option" value="98146">98146</option>
+                  <option class="bx--select-option" value="98148">98148</option>
+                  <option class="bx--select-option" value="98155">98155</option>
+                  <option class="bx--select-option" value="98166">98166</option>
+                  <option class="bx--select-option" value="98168">98168</option>
+                  <option class="bx--select-option" value="98177">98177</option>
+                  <option class="bx--select-option" value="98178">98178</option>
+                  <option class="bx--select-option" value="98188">98188</option>
+                  <option class="bx--select-option" value="98198">98198</option>
+                  <option class="bx--select-option" value="98199">98199</option>
+                </select>
               </div>
             </div>
 
@@ -81,7 +147,7 @@
             </div>
 
             <div class="bx--form-item bx--text-input-wrapper">
-              <label for="text-input-3" class="bx--label">Neightbour's Square Footage</label>
+              <label for="text-input-3" class="bx--label">Neighbor’s Square Footage</label>
               <div class="bx--text-input__field-wrapper">
                 <input
                   onchange='onChange(event)'
@@ -94,7 +160,7 @@
             </div>
 
             <div class="bx--form-item bx--text-input-wrapper">
-              <label for="text-input-3" class="bx--label">Latitud</label>
+              <label for="text-input-3" class="bx--label">Latitude</label>
               <div class="bx--text-input__field-wrapper">
                 <input
                   onchange='onChange(event)'
@@ -107,7 +173,7 @@
             </div>
 
             <div class="bx--form-item bx--text-input-wrapper">
-              <label for="text-input-3" class="bx--label">Longitud</label>
+              <label for="text-input-3" class="bx--label">Longitude</label>
               <div class="bx--text-input__field-wrapper">
                 <input
                   onchange='onChange(event)'
